@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { type Language, profile, translations } from './content'
 
+type ThemeMode = 'system' | 'light' | 'dark'
+
 function ArrowIcon() {
   return (
     <svg viewBox="0 0 20 20" aria-hidden="true">
@@ -19,20 +21,30 @@ function LinkedInIcon() {
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [dark, setDark] = useState(() => {
-    const saved = localStorage.getItem('wm-theme')
-    return saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
+  const [themeMode, setThemeMode] = useState<ThemeMode>(() => {
+    const saved = localStorage.getItem('wm-theme-mode')
+    return saved === 'light' || saved === 'dark' ? saved : 'system'
   })
+  const [systemDark, setSystemDark] = useState(() => window.matchMedia('(prefers-color-scheme: dark)').matches)
   const [language, setLanguage] = useState<Language>(() => {
     const saved = localStorage.getItem('wm-language')
     return saved === 'fr' ? 'fr' : 'en'
   })
   const t = translations[language]
+  const dark = themeMode === 'system' ? systemDark : themeMode === 'dark'
+
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-color-scheme: dark)')
+    const syncWithDevice = (event: MediaQueryListEvent) => setSystemDark(event.matches)
+    setSystemDark(media.matches)
+    media.addEventListener('change', syncWithDevice)
+    return () => media.removeEventListener('change', syncWithDevice)
+  }, [])
 
   useEffect(() => {
     document.documentElement.dataset.theme = dark ? 'dark' : 'light'
-    localStorage.setItem('wm-theme', dark ? 'dark' : 'light')
-  }, [dark])
+    localStorage.setItem('wm-theme-mode', themeMode)
+  }, [dark, themeMode])
 
   useEffect(() => {
     document.documentElement.lang = language
@@ -44,6 +56,8 @@ export default function App() {
   }, [language, t.documentDescription, t.documentTitle])
 
   const closeMenu = () => setMenuOpen(false)
+  const cycleTheme = () => setThemeMode((mode) => mode === 'system' ? 'light' : mode === 'light' ? 'dark' : 'system')
+  const themeLabel = themeMode === 'system' ? t.themeSystem : themeMode === 'light' ? t.themeLight : t.themeDark
 
   return (
     <div className="site-shell">
@@ -80,8 +94,8 @@ export default function App() {
             <span aria-hidden="true">/</span>
             <span className={language === 'fr' ? 'active' : ''}>FR</span>
           </button>
-          <button className="theme-toggle" type="button" onClick={() => setDark((value) => !value)} aria-label={dark ? t.themeToLight : t.themeToDark}>
-            <span aria-hidden="true">{dark ? '☼' : '◐'}</span>
+          <button className="theme-toggle" type="button" onClick={cycleTheme} aria-label={themeLabel} title={themeLabel}>
+            <span aria-hidden="true">{themeMode === 'system' ? '◐' : themeMode === 'light' ? '☼' : '◑'}</span>
           </button>
         </div>
       </header>
