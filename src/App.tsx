@@ -80,7 +80,7 @@ export default function App() {
           <span className="menu-glyph" aria-hidden="true">{menuOpen ? '×' : '↗'}</span>
         </button>
 
-        <nav id="primary-nav" className={menuOpen ? 'nav open' : 'nav'} aria-label="Primary navigation">
+        <nav id="primary-nav" className={menuOpen ? 'nav open' : 'nav'} aria-label={t.primaryNavigationLabel}>
           <a href="#about" onClick={closeMenu}>{t.nav.about}</a>
           <a href="#work" onClick={closeMenu}>{t.nav.journey}</a>
           <a href="#projects" onClick={closeMenu}>{t.nav.projects}</a>
@@ -89,7 +89,7 @@ export default function App() {
         </nav>
 
         <div className="header-actions">
-          <button className="language-toggle" type="button" onClick={() => setLanguage((value) => value === 'en' ? 'fr' : 'en')} aria-label={`${t.languageLabel}: ${language.toUpperCase()}`}>
+          <button className="language-toggle" type="button" onClick={() => setLanguage((value) => value === 'en' ? 'fr' : 'en')} aria-label={t.languageSwitchLabel}>
             <span className={language === 'en' ? 'active' : ''}>EN</span>
             <span aria-hidden="true">/</span>
             <span className={language === 'fr' ? 'active' : ''}>FR</span>
@@ -122,7 +122,7 @@ export default function App() {
             </a>
           </div>
 
-          <div className="hero-meta" aria-label="Profile details">
+          <div className="hero-meta" aria-label={t.profileDetailsLabel}>
             <span>{t.role}</span>
             <span>{t.location}</span>
             <span>{t.hero.meta}</span>
