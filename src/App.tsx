@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { type Language, profile, translations } from './content'
+import TechLeadLab from './TechLeadLab'
 
 type ThemeMode = 'system' | 'light' | 'dark'
 
@@ -85,6 +86,7 @@ export default function App() {
           <a href="#work" onClick={closeMenu}>{t.nav.journey}</a>
           <a href="#projects" onClick={closeMenu}>{t.nav.projects}</a>
           <a href="#approach" onClick={closeMenu}>{t.nav.toolkit}</a>
+          <a href="#lab" onClick={closeMenu}>{t.nav.lab}</a>
           <a href="#contact" onClick={closeMenu}>{t.nav.contact}</a>
         </nav>
 
@@ -242,6 +244,8 @@ export default function App() {
             ))}
           </div>
         </section>
+
+        <TechLeadLab content={t.lab} />
 
         <section className="contact section" id="contact">
           <div className="contact-orbit" aria-hidden="true">
