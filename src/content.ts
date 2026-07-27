@@ -3,7 +3,7 @@ export type Language = 'en' | 'fr'
 export const profile = {
   name: 'Walid Maarad',
   initials: 'WM',
-  company: 'Intelcia Software Solutions',
+  company: 'Intelcia Tech',
   linkedin: 'https://www.linkedin.com/in/walidmaarad/',
   github: 'https://github.com/walsam',
   email: 'mailto:wmaarad@gmail.com',
@@ -51,7 +51,7 @@ export const translations = {
       titleAccent: 'systems',
       titleAfter: ', teams, and change.',
       paragraphs: [
-        'I started as a full-stack engineer delivering public services for Moroccan citizens, then moved through private-sector and travel projects before growing into technical leadership at Intelcia Software Solutions.',
+        'I started as a full-stack engineer delivering public services for Moroccan citizens, then moved through private-sector and travel projects before growing into technical leadership at Intelcia Tech.',
         'Today, I lead teams of 5 to 15 engineers, design software architectures, produce project estimates, review merge requests, and remain close enough to the code to solve complex problems alongside the team.',
       ],
     },
@@ -240,7 +240,7 @@ export const translations = {
       label: 'À propos', eyebrow: 'Bâtisseur dans l’âme',
       titleBefore: 'Du développement de fonctionnalités au pilotage de', titleAccent: 'systèmes', titleAfter: ', d’équipes et du changement.',
       paragraphs: [
-        'J’ai commencé comme développeur full-stack sur des services publics destinés aux citoyens marocains, avant d’évoluer dans des contextes privés et touristiques, puis vers le leadership technique chez Intelcia Software Solutions.',
+        'J’ai commencé comme développeur full-stack sur des services publics destinés aux citoyens marocains, avant d’évoluer dans des contextes privés et touristiques, puis vers le leadership technique chez Intelcia Tech.',
         'Aujourd’hui, j’encadre des équipes de 5 à 15 personnes, je conçois des architectures, réalise des chiffrages, relis les merge requests et reste suffisamment proche du code pour résoudre les sujets complexes avec l’équipe.',
       ],
     },
